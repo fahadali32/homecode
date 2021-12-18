@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/static/index.css" type="text/css" media="all" />
+	<title>HomeCode</title>
+	<%- include('seo') %>
+    
+	<%- include('cdn') %>
+	<style>
+	  
+	</style>
+	
+</head>
+<body>
+
+<div class="codebody">
+<div class="filarea">
+<h5 class="file_text">File > <%= filename %></h5>
+<input class="btn btn-primary" type="button" onclick="Do()" id="submit" value="Run >" />
+
+</div>
+
+<div id="codearea" class="codearea">
+<form class="" action="/send" method="post" accept-charset="utf-8">
+<input type="hidden" name="file_name" value=`<%= filename %>`/>
+<textarea id="textarea" name="code" class="prism-live line-numbers language-javascript fill">
+  <%= data %>
+</textarea>
+</form>
+</div>
+
+<div id="terminal">
+<button class="close" onclick="Close()">&times;</button>
+<code id="terminalarea" class="terminalarea">
+$terminal->
+</code>
+</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+ 
+<script type="text/javascript">
+var socket = io();
+document.getElementById("codearea").style.height = `${window.innerHeight}px`;
+var text = document.querySelector("#textarea").value;
+async function Do(){
+//alert('ok')
+var text = document.querySelector("#textarea").value;
+try {
+    const todo = {
+      code:text,
+      file_name:`<%= filename %>`
+    }
+    const response = await axios.post('/send',todo);
+    const todoItems = response.data;
+    //alert(todoItems)
+    document.getElementById("codearea").style.height = `${window.innerHeight-250}px` ;
+    document.getElementById("terminal").style.visibility = "visible";
+    document.getElementById("terminal").style.height = "300px";
+    const str = `<%= filename %>=>\n ${todoItems}`
+    socket.on('message', function(data){
+    alert(data)
+    console.log(data)
+    var ter = document.querySelector("#terminalarea").innerHTML = String(data);
+    });
+      
+    //var ter = document.querySelector("#terminalarea").innerHTML = String(str);
+    //alert(JSON.stringify(ter))
+    alert(str)
+} catch (errors) {
+    console.error(errors);
+  }
+};
+function Close(){
+  document.getElementById("terminal").style.visibility = "hidden";
+}
+</script>
+  <%- include('footer') %>
+</body>
+</html>

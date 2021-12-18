@@ -1,0 +1,63 @@
+
+	*{
+	  padding: 0px;
+	  margin: 0px;
+	}
+	body{
+	 background-color:#1E1E1E;
+   padding: 0px;
+   margin: 0px;
+	}
+.codearea {
+    overflow: auto; 
+    width:100%;
+    background-color:#1E1E1E;
+}
+.filarea{
+  background-color: white;
+  height: 30;
+}
+#mydiv { 
+  visibility:visible;
+ }
+#terminal{
+   visibility: hidden;
+   /*height: 300px;*/
+   width: 100%;
+   padding: 0px;
+   margin: 0px;
+   background-color:black;
+   color:white;
+   position: absolute;
+   overflow: scroll;
+ }
+#terminalarea{
+  color: white;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  position: relative;
+}
+#submit{
+  margin-bottom: 20px;
+  margin-left:43%;
+}
+.file_text{
+  text-align: center;
+  font-family: Sans-Serif;
+}
+.close{
+  position:fixed;
+  float: right;
+  right: 0px;
+  border: none;
+  border-radius:50%;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  font-size:20px;
+}
+.codebody{
+  background-color: #1E1E1E;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="" content="">
+    <title></title>
+    <style>
+      .textarea{
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io();
+    function Func(){
+      var text = document.querySelector('.textarea').value
+      if(window.event.keyCode === 13){
+        
+      }
+    }
+    </script>
+    <h1>Hello World!</h1>
+    <textarea onkeydown="Func()" rows="50" class="textarea"></textarea>
+  </body>
+</html>
